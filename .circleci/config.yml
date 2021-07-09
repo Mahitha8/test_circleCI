@@ -13,6 +13,7 @@ jobs:
           name: Install dependencies
           working_directory: ./.circleci/ansible
           command: |
+            sudo apt-get install zip
             apk add --update ansible
             ansible --version
             pip3 install --upgrade pip
