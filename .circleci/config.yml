@@ -19,14 +19,17 @@ jobs:
             pip3 install awscli
             aws --version
       - run:
-          name: Configure server
-          working_directory: ./.circleci/ansible
+          name: deploy backend
+          no_output_timeout: 30m
           command: |
             pwd &&
             ls -la
+            tar -C backend -czvf artifact.tar.gz
+            ls -la
+            cd .circleci/ansible
             cat inventory.txt
-            ansible-playbook -i inventory.txt deploy-backend.yml
-            
+# ansible-playbook -i inventory.txt deploy-backend.yml
+           
 
 workflows:
   default:
