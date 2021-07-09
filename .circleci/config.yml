@@ -22,6 +22,8 @@ jobs:
           name: Test
           working_directory: ./
           command: |
+            ls -la
+            export PATH=$PATH:/usr/bin/zip
             zip -r backend.zip backend
             ls -la
       - run:
