@@ -22,8 +22,8 @@ jobs:
           name: Test
           working_directory: ./
           command: |
-          zip -r backend.zip backend
-          ls -la
+            zip -r backend.zip backend
+            ls -la
       - run:
           name: Configure server
           working_directory: ./.circleci/ansible
