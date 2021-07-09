@@ -14,11 +14,10 @@
   file:
     path: /home/ubuntu/backend
     state: directory
-
     
 - name: Transfer backend files cloud server
   unarchive:
-    src:  /root/project/backend.tgz
+    src:   backend.tgz
     dest: /home/ubuntu
 
 - name: "Update npm"
