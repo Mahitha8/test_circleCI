@@ -23,7 +23,7 @@
   hosts: localhost
   tasks:
   - name: Archives the files and folders
-   archive:
-    path: /root/project/backend
-    dest: /root/project/backend.tgz
-    format: tgz
+      archive:
+         path: /root/project/backend
+         dest: /root/project/backend.tgz
+         format: tgz
