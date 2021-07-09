@@ -1,3 +1,4 @@
+---
 - name: "upgrade packages."
   become: true
   apt:
@@ -9,20 +10,26 @@
     name: ["nodejs", "npm"]
     update_cache: yes
 
+- name: Creates directory
+  file:
+    path: /home/ubuntu/backend
+    state: directory
+  
+unarchive:
+  src: backend.tgz
+  dest: /home/ubuntu
 
-- name: "copy backend binaries"
-  become: yes
-  synchronize:
-    src: ../../backend/dist
-    dest: /home/ubuntu/uda_app
-    recursive: true
+- name: "Update npm"
+  become: true
+  shell: |
+    cd /home/ubuntu/backend
+    npm install -g npm@latest
 
-- name: "copy node_modules"
-  become: yes
-  synchronize:
-    src: ../../backend/node_modules
-    dest: /home/ubuntu/uda_app
-    recursive: true
+
+- name: "NPM install"
+  command: npm install
+  args:
+    chdir: /home/ubuntu/backend
 
 
 
