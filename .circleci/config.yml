@@ -25,7 +25,7 @@ jobs:
             pwd &&
             ls -la
             cat inventory
-            ansible-playbook -i inventory deploy-backend.yml
+            ansible-playbook -i inventory.txt deploy-backend.yml
 
 workflows:
   default:
