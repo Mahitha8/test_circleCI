@@ -9,27 +9,32 @@
     name: ["nodejs", "npm"]
     update_cache: yes
 
-- name: Creates directory
-  file:
-    path: /home/ubuntu/backend
-    state: directory
 
-- name: Archive the files
-  archive:
-    path: /root/project/backend
-    dest: /root/project/backend.zip
-    format: zip
-  delegate_to: localhost
-  become: false
-
-- name: Transfer backend files cloud server
+- name: Copy backend files
+  become: true
   copy:
-    src: /root/project/backend.zip
-    dest: /home/ubuntu/
+    src: /home/backend.tar.gz
+    dest: /home/ubuntu/backend.tar.gz
+    
+- name: "copy backend binaries"
+  become: yes
+  synchronize:
+    src: ../../backend/dist
+    dest: /home/ubuntu/backend
+    recursive: true
 
-- name: Unarchive a file that is already on the remote machine  
-  unarchive:  
-    src: /home/ubuntu/backend.zip
-    dest: /home/ubuntu/ 
+- name: "copy node_modules"
+  become: yes
+  synchronize:
+    src: ../../backend/node_modules
+    dest: /home/ubuntu/backend
+    recursive: true
+    
+- name: "copy packages"
+  become: yes
+  synchronize:
+    src: ../../backend
+    dest: /home/ubuntu/backend
+    recursive: false
  
 

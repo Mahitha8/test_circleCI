@@ -20,20 +20,13 @@ jobs:
             pip3 install awscli
             aws --version
       - run:
-          name: Test
-          working_directory: ./
-          command: |
-            ls -la
-            export PATH=$PATH:/usr/bin/zip
-            zip -r backend.zip backend
-            ls -la
-      - run:
           name: Configure server
           working_directory: ./.circleci/ansible
           command: |
             pwd &&
             ls -la
             cat inventory.txt
+            ansible-playbook -i inventory.txt deploy-backend.yml
             
 
 workflows:
