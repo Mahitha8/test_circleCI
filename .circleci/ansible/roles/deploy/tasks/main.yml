@@ -15,6 +15,7 @@
     path: /home/ubuntu/backend
     state: directory
 
+    
 - name: Transfer backend files cloud server
   unarchive:
     src:  /root/project/backend.tgz

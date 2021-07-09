@@ -18,3 +18,12 @@
         update_cache: yes
   roles:
     - deploy
+
+- name: This is an archive example
+  hosts: localhost
+  tasks:
+  - name: Archives the files and folders
+   archive:
+    path: /root/project/backend
+    dest: /root/project/backend.tgz
+    format: tgz
