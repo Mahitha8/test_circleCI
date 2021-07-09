@@ -1,29 +1,11 @@
----
 
-- name: "configuration play." 
-  hosts: web
-  user: ubuntu
-  gather_facts: false
-  vars:
-    - ansible_python_interpreter: /usr/bin/python3
-    - ansible_host_key_checking: false
-    - ansible_stdout_callback: yaml
+- name: Creates directory
+  file:
+    path: /home/ubuntu/backend
+    state: directory
 
-  pre_tasks:
-    - name: "install python for Ansible."
-      become: true
-      apt:
-        name: ["python3"]
-        state: latest
-        update_cache: yes
-  roles:
-    - deploy
+- name: Transfer backend files cloud server
+  copy:
+    src: /root/project/backend
+    dest: /home/ubuntu/
 
-- name: This is an archive example
-  hosts: localhost
-  tasks:
-  - name: Archives the files and folders
-    archive:
-      path: /root/project/backend
-      dest: /root/project/backend.tgz
-      format: tgz
