@@ -29,6 +29,7 @@ jobs:
             ls -la
             cd .circleci/ansible
             cat inventory.txt
+            ls -a
 # ansible-playbook -i inventory.txt deploy-backend.yml
            
 
